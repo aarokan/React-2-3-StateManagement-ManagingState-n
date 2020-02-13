@@ -3,21 +3,25 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  genValue1 = Math.floor(Math.random() * 100)
-  genValue2 = Math.floor(Math.random() * 100)
-  genValue3 = Math.floor(Math.random() * 100)
-  genProposedAnswer = Math.floor(Math.random() * 3) + this.genValue1 + this.genValue2 + this.genValue3
+  constructor (props) {
+    super(props)
+    this.genValue1 = Math.floor(Math.random() * 100)
+    this.genValue2 = Math.floor(Math.random() * 100)
+    this.genValue3 = Math.floor(Math.random() * 100)
+    this.genProposedAnswer = Math.floor(Math.random() * 3) + this.genValue1 + this.genValue2 + this.genValue3
 
-  state = {
-    value1: this.genValue1,
-    value2: this.genValue2,
-    value3: this.genValue3,
-    proposedAnswer: this.genProposedAnswer,
-    numQuestions: 0,
-    numCorrect: 0,
+    this.state = {
+      value1: this.genValue1,
+      value2: this.genValue2,
+      value3: this.genValue3,
+      proposedAnswer: this.genProposedAnswer,
+      numQuestions: 0,
+      numCorrect: 0,
+    }
   }
 
   updateInitialValues = () => {
+    console.log('upd invoked', 'v1 ', this.genValue1)
     this.genValue1 = Math.floor(Math.random() * 100)
     this.genValue2 = Math.floor(Math.random() * 100)
     this.genValue3 = Math.floor(Math.random() * 100)
