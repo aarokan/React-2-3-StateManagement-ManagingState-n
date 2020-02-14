@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Score extends Component {
-  render() {
-    const { numQuestions, numCorrect } = this.props
-    return (
-      <p className="text">
-        Your Score: {numCorrect}/{numQuestions}
-      </p>
-    )
-  }
+function Score(props) {
+  const { numQuestions, numCorrect } = props
+  return (
+    <p className="text">
+      Your Score: {numCorrect}/{numQuestions}
+    </p>
+  )
 }
 
 export default Score
