@@ -20,8 +20,7 @@ class Game extends Component {
     return [value1, value2, value3, proposedAnswer]
   }
 
-  updateState = () => {
-    const newValuesArray = this.makeNewQuestion()
+  updateState = newValuesArray => {
     this.setState({
       value1: newValuesArray[0],
       value2: newValuesArray[1],
@@ -31,13 +30,20 @@ class Game extends Component {
   }
 
   handleAnswer = event => {
+    const newValuesArray = this.makeNewQuestion()
+    this.updateState(newValuesArray) 
+    const answerWasCorrect = this.evaluateAnswer(event.target.name)
+    this.props.handleAnswer(answerWasCorrect)
+  }
+
+  evaluateAnswer(givenAnswer) {
     const { value1, value2, value3, proposedAnswer } = this.state
-    const selectedAnswer = event.target.name
-    const sumIsEqual = (value1 + value2 + value3) === proposedAnswer
-    console.log((value1 + value2 + value3), proposedAnswer, 'handle :', sumIsEqual)
-    this.props.handleAnswer((selectedAnswer === 'true' && sumIsEqual) ||
-                            (selectedAnswer === 'false' && !sumIsEqual))
-    this.updateState()                            
+    const corrAnswer = value1 + value2 + value3
+
+    return (
+      (corrAnswer === proposedAnswer && givenAnswer === 'true') ||
+      (corrAnswer !== proposedAnswer && givenAnswer === 'false')
+    )
   }
   
   render() {
